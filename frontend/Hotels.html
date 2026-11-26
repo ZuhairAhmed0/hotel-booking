@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071525">
+  <meta name="description" content="تصفح الفنادق المتاحة في السودان وابحث حسب المدينة أو اسم الفندق.">
+  <link rel="icon" type="image/png" href="assets/logo/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Hotels.css">
+  <title>فنادق السودان | إقامة</title>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="index.html" aria-label="إقامة - الرئيسية"><img src="assets/logo/logo.png" alt="إقامة"></a>
+    <button class="menu-toggle" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mainNav"><span></span><span></span></button>
+    <nav class="main-nav" id="mainNav" aria-label="التنقل الرئيسي">
+      <div class="nav-drawer-head"><span>القائمة</span><button class="nav-close" type="button" aria-label="إغلاق القائمة">×</button></div>
+      <a href="index.html">الرئيسية</a>
+      <a class="active" href="Hotels.html" aria-current="page">الفنادق</a>
+      <a href="index.html#offers">العروض</a>
+      <a href="index.html#about">من نحن</a>
+    </nav>
+    <a class="header-action" href="#hotelDirectory">احجز الان <span>↙</span></a>
+  </header>
+  <button class="nav-backdrop" type="button" aria-label="إغلاق القائمة" tabindex="-1"></button>
+
+  <main>
+    <section class="directory-hero">
+      <div class="hero-backdrop" aria-hidden="true"></div>
+      <div class="hero-content page-shell">
+        <!-- <span class="eyebrow"><i></i> إقامتك القادمة تبدأ هنا</span> -->
+        <h1>فنادق السودان<br><em>اختر وجهتك.</em></h1>
+        <p>من أجواء العاصمة إلى شاطئ البحر الأحمر، اكتشف مكاناً يناسب رحلتك.</p>
+        <a class="hero-scroll" href="#hotelDirectory"><span>اكتشف الفنادق</span><b aria-hidden="true">↓</b></a>
+      </div>
+    </section>
+
+    <section class="directory-section page-shell" id="hotelDirectory">
+      <div class="section-heading">
+        <div><span class="eyebrow muted">قائمة فنادقنا</span><h2>تصفح جميع الفنادق <em>من مكانك.</em></h2><p>اختر المدينة أو ابحث عن الفندق المناسب لإقامتك.</p></div>
+        <span class="hotel-count" id="hotelCount" aria-live="polite"></span>
+      </div>
+
+      <div class="directory-controls">
+        <div class="city-tabs" id="cityTabs" role="group" aria-label="تصفية حسب المدينة"></div>
+        <label class="search-field">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="hotelSearch" type="search" placeholder="ابحث عن فندق أو مدينة" aria-label="ابحث عن فندق أو مدينة">
+          <kbd>⌘ K</kbd>
+        </label>
+      </div>
+
+      <div class="city-sections" id="citySections" aria-live="polite">
+        <div class="empty-state" role="status"><h3>جاري تحميل الفنادق...</h3></div>
+      </div>
+      <div class="empty-state" id="emptyState" hidden>
+        <span class="empty-icon" aria-hidden="true">⌕</span>
+        <h3>لا توجد فنادق مطابقة</h3>
+        <p>جرّب البحث باسم آخر أو اختر مدينة مختلفة.</p>
+        <button type="button" id="clearFilters">عرض فنادق الخرطوم</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="footer-brand" href="index.html"><img src="assets/logo/logo.png" alt="إقامة"><span></span></a>
+    <p>كل رحلة جميلة تبدأ بإقامة تشبهك.</p>
+    <a href="index.html#destinations">اكتشف وجهات السودان <b aria-hidden="true">←</b></a>
+    <small>© ٢٠٢٦ إقامة. جميع الحقوق محفوظة.</small>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="api-config.js"></script>
+  <script src="api.js"></script>
+  <script src="Hotels.js?v=clean-route-support"></script>
+</body>
+</html>

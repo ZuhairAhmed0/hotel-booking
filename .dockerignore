@@ -1,0 +1,11 @@
+.git
+.github
+node_modules
+backend/node_modules
+backend/storage/logs/*
+backend/storage/framework/cache/*
+backend/storage/framework/sessions/*
+backend/storage/framework/views/*
+بحث تفصيلي للمشكلة.pdf
+.env
+backend/.env

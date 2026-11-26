@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071525">
+  <meta name="description" content="اكتشف فندق مارينا في بورتسودان، اختر غرفتك وتعرّف على تكلفة إقامتك.">
+  <link rel="icon" type="image/png" href="assets/logo/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="hotel.css?v=booking-confirmation">
+  <title>فندق مارينا | إقامة</title>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="index.html" aria-label="إقامة - الرئيسية"><img src="assets/logo/logo.png" alt="إقامة"></a>
+    <button class="menu-toggle" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mainNav"><span></span><span></span></button>
+    <nav class="main-nav" id="mainNav" aria-label="التنقل الرئيسي">
+      <div class="nav-drawer-head"><span>القائمة</span><button class="nav-close" type="button" aria-label="إغلاق القائمة">×</button></div>
+      <a href="index.html">الرئيسية</a>
+      <a class="active" href="Hotels.html" aria-current="page">الفنادق</a>
+      <a href="index.html#offers">العروض</a>
+      <a href="index.html#about">من نحن</a>
+    </nav>
+    <a class="header-action" href="#booking">احجز الان <span>↙</span></a>
+  </header>
+  <button class="nav-backdrop" type="button" aria-label="إغلاق القائمة" tabindex="-1"></button>
+
+  <main>
+    <section class="hotel-heading page-shell" aria-labelledby="hotelName">
+      <!-- <div class="breadcrumbs"><a href="index.html">الرئيسية</a><span>/</span><a href="index.html#hotels">الفنادق</a><span>/</span><span>بورتسودان</span></div> -->
+      <div class="heading-row">
+        <div>
+          <!-- <span class="eyebrow"><i></i> إقامة على ساحل البحر الأحمر</span> -->
+          <h1 id="hotelName">جاري تحميل الفندق...</h1>
+          <div class="hotel-location-row">
+            <p class="hotel-location"><span aria-hidden="true">⌖</span> <span id="hotelLocation" style="color: aliceblue !important;"></span></p>
+            <a class="location-action" id="hotelLocationLink" target="_blank" rel="noopener noreferrer" hidden><span aria-hidden="true">↗</span> عرض الموقع</a>
+          </div>
+        </div>
+        <div class="rating-block" id="hotelRating" aria-label="التقييم">
+          <span class="rating-stars" aria-hidden="true">★★★★★</span>
+          <strong id="hotelRatingValue">-</strong><small id="hotelReviewCount">0 تقييماً</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery page-shell" id="gallery" aria-label="صور الفندق">
+    </section>
+
+    <div class="hotel-layout page-shell">
+      <section class="hotel-content" id="overview">
+        <!-- <div class="quick-facts" aria-label="معلومات سريعة">
+          <div class="quick-fact"><span class="fact-icon">★</span><span><b>4.9 / 5</b><small>تقييم الضيوف</small></span></div>
+          <div class="quick-fact"><span class="fact-icon">⌖</span><span><b>موقع مميز</b><small>قريب من الواجهة البحرية</small></span></div>
+          <div class="quick-fact"><span class="fact-icon">⌂</span><span><b>راحة متكاملة</b><small>خدمات تناسب إقامتك</small></span></div>
+        </div> -->
+
+        <section class="content-section about-section">
+          <div class="section-title"><div><span class="eyebrow muted">تعرّف على المكان</span><h2>إقامة هادئة <em>بروح البحر.</em></h2></div><span class="section-index"></span></div>
+          <p class="description" id="hotelDescription">جاري تحميل تفاصيل الفندق...</p>
+          <!-- <div class="amenities" aria-label="مرافق الفندق">
+            <span><i>⌁</i> واي فاي مجاني</span>
+            <span><i>◷</i> استقبال على مدار الساعة</span>
+            <span><i>♨</i> مطعم داخل الفندق</span>
+            <span><i>⌖</i> قريب من البحر</span>
+            <span><i>◉</i> مواقف سيارات</span>
+            <span><i>☼</i> غرف مكيّفة</span>
+          </div> -->
+        </section>
+
+        <section class="content-section rooms-section" id="rooms">
+          <div class="section-title"><div><span class="eyebrow muted">اختر ما يناسبك</span><h2>الغرف <em>والعروض المتاحة.</em></h2></div><span class="section-index"></span></div>
+          <p class="section-note">الأسعار لليلة الواحدة. اختر غرفة لاحتساب إجمالي مدة إقامتك.</p>
+          <div class="room-list" id="roomList" aria-live="polite"><p class="section-note">جاري تحميل أنواع الغرف...</p></div>
+        </section>
+
+        <!-- <section class="content-section location-section" id="location">
+          <div class="section-title"><div><span class="eyebrow muted">في قلب بورتسودان</span><h2>موقع قريب <em>من كل ما يهمك.</em></h2></div><span class="section-index"></span></div>
+          <div class="location-panel">
+            <div class="location-mark" aria-hidden="true">⌖</div>
+            <div><b>فندق مارينا، بورتسودان</b><p>موقع ساحلي يسهل منه الوصول إلى وسط المدينة والواجهة البحرية.</p></div>
+            <span class="location-distance">البحر الأحمر <b>قريب</b></span>
+          </div>
+        </section> -->
+      </section>
+
+      <aside class="booking-card" id="booking" aria-labelledby="bookingTitle">
+        <!-- <div class="booking-topline"><span class="booking-status"><i></i> استفسر عن التوفر</span><span class="secure-mark" title="طلب آمن">◇</span></div> -->
+        <h2 id="bookingTitle">اخبرنا عن خطة إقامتك</h2>
+        <p class="booking-intro">اختر المدة والغرفة، وسنعاود التواصل معك لتأكيد التفاصيل.</p>
+        <form id="bookingForm">
+          <div class="date-fields">
+            <label class="field"><span>تاريخ الوصول</span><input id="checkIn" name="checkIn" type="date" required></label>
+            <label class="field"><span>تاريخ المغادرة</span><input id="checkOut" name="checkOut" type="date" required></label>
+          </div>
+          <label class="field guest-field"><span>عدد الضيوف</span><input id="guestCount" name="guestCount" type="number" min="1" max="10" step="1" value="2" inputmode="numeric" required></label>
+
+          <div class="price-summary" aria-live="polite">
+            <div><span>الغرفة المختارة</span><b id="selectedRoomName">اختر غرفة</b></div>
+            <div><span>مدة الإقامة</span><b><span id="nightCount">2</span> ليلة</b></div>
+            <div class="nightly-price"><span>سعر الليلة</span><b id="nightlyPrice">-</b></div>
+            <div class="total-row"><span>الإجمالي التقديري</span><strong id="totalPrice">-</strong></div>
+            <small class="price-disclaimer">السعر النهائي والتوفر يؤكدان بعد التواصل مع الفندق.</small>
+          </div>
+
+          <div class="contact-fields">
+            <span class="form-label">بيانات التواصل</span>
+            <label class="field"><span>الاسم الكامل</span><input name="fullName" type="text" autocomplete="name" placeholder="اكتب اسمك" required></label>
+            <div class="field phone-field">
+              <span>رقم الهاتف</span>
+              <div class="phone-input-group" dir="ltr">
+                <select id="phoneCountryCode" name="phoneCountryCode" autocomplete="tel-country-code" aria-label="مفتاح الدولة" required>
+                  <option value="+213">الجزائر +213</option>
+                  <option value="+973">البحرين +973</option>
+                  <option value="+269">جزر القمر +269</option>
+                  <option value="+253">جيبوتي +253</option>
+                  <option value="+20">مصر +20</option>
+                  <option value="+964">العراق +964</option>
+                  <option value="+962">الأردن +962</option>
+                  <option value="+965">الكويت +965</option>
+                  <option value="+961">لبنان +961</option>
+                  <option value="+218">ليبيا +218</option>
+                  <option value="+222">موريتانيا +222</option>
+                  <option value="+212">المغرب +212</option>
+                  <option value="+968">عُمان +968</option>
+                  <option value="+970">فلسطين +970</option>
+                  <option value="+974">قطر +974</option>
+                  <option value="+966">السعودية +966</option>
+                  <option value="+252">الصومال +252</option>
+                  <option value="+249" selected>السودان +249</option>
+                  <option value="+963">سوريا +963</option>
+                  <option value="+216">تونس +216</option>
+                  <option value="+971">الإمارات +971</option>
+                  <option value="+967">اليمن +967</option>
+                </select>
+                <input id="phoneNumber" name="phone" type="tel" dir="ltr" autocomplete="tel-national" inputmode="numeric" pattern="[0-9]{4,14}" maxlength="14" placeholder="912345785" title="أدخل الرقم بدون مفتاح الدولة" required>
+              </div>
+              <small class="phone-hint">اختر مفتاح الدولة ثم اكتب الرقم بدون الصفر الأول أو المفتاح.</small>
+            </div>
+            <label class="field"><span>البريد الإلكتروني <small>اختياري</small></span><input name="email" type="email" autocomplete="email" placeholder="name@example.com"></label>
+            <label class="field"><span>ملاحظة للفندق <small>اختياري</small></span><textarea name="message" rows="2" placeholder="أي طلبات أو تفاصيل إضافية؟"></textarea></label>
+          </div>
+          <button class="submit-button" type="submit">أرسل طلب الحجز <b aria-hidden="true">↙</b></button>
+          <p class="privacy-note">لن يتم تأكيد الحجز أو خصم أي مبلغ الآن.</p>
+        </form>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <a class="footer-brand" href="index.html"><img src="assets/logo/logo.png" alt="إقامة"><span></span></a>
+    <p>كل رحلة جميلة تبدأ بإقامة تشبهك.</p>
+    <a href="index.html#hotels">اكتشف المزيد من الفنادق <b aria-hidden="true">←</b></a>
+    <small>© ٢٠٢٦ إقامة. جميع الحقوق محفوظة.</small>
+  </footer>
+
+  <dialog class="image-dialog" id="imageDialog" aria-label="عرض صورة الفندق">
+    <button class="dialog-close" type="button" aria-label="إغلاق الصورة">×</button>
+    <img id="dialogImage" src="" alt="">
+  </dialog>
+  <dialog class="booking-success-dialog" id="bookingSuccessDialog" aria-labelledby="bookingSuccessTitle" aria-describedby="bookingSuccessMessage">
+    <div class="booking-success-mark" aria-hidden="true">✓</div>
+    <h2 id="bookingSuccessTitle">تم استلام طلب الحجز بنجاح</h2>
+    <p id="bookingSuccessMessage">سيقوم الفندق بالتواصل معك في أقرب وقت ممكن.</p>
+    <button class="booking-success-close" id="bookingSuccessClose" type="button">حسناً</button>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="api-config.js"></script>
+  <script src="api.js"></script>
+  <script src="hotel.js?v=arab-phone-scroll-lock"></script>
+</body>
+</html>
