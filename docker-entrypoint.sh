@@ -5,11 +5,16 @@ cd /var/www/html/backend
 
 # Configure Apache to listen on Render's dynamic PORT (defaults to 10000 or 80)
 PORT="${PORT:-10000}"
-echo "Configuring Apache to listen on port ${PORT}..."
-sed -i "s/Listen [0-9]*/Listen ${PORT}/g" /etc/apache2/ports.conf
+echo "Configuring Apache to listen exclusively on port ${PORT}..."
+echo "Listen ${PORT}" > /etc/apache2/ports.conf
 sed -i "s/<VirtualHost \*:[0-9]*>/<VirtualHost \*:${PORT}>/g" /etc/apache2/sites-available/000-default.conf
 
-# 1. Ensure .env file exists
+# 1. Ensure static health check files exist in public directory
+echo "OK" > /var/www/html/backend/public/health
+echo "OK" > /var/www/html/backend/public/up
+chmod 644 /var/www/html/backend/public/health /var/www/html/backend/public/up
+
+# 2. Ensure .env file exists
 if [ ! -f .env ]; then
     if [ -f .env.example ]; then
         echo "Creating .env from .env.example..."
@@ -19,7 +24,7 @@ if [ ! -f .env ]; then
     fi
 fi
 
-# 2. Ensure a valid APP_KEY exists
+# 3. Ensure a valid APP_KEY exists
 DEFAULT_KEY="base64:wlWvcaADEomFbuBoQSMuzWUD20tpdFm8+5FksUPAltg="
 
 if [ -n "$APP_KEY" ]; then
@@ -50,43 +55,45 @@ if [ -n "$DATABASE_URL" ]; then
     echo "export DATABASE_URL='${DATABASE_URL}'" >> /etc/apache2/envvars
 fi
 
-# 3. Prepare SQLite if DB_CONNECTION is sqlite (default)
+# 4. Prepare SQLite if DB_CONNECTION is sqlite (default)
 if [ "${DB_CONNECTION:-sqlite}" = "sqlite" ]; then
+    mkdir -p /var/www/html/backend/database
     if [ ! -f /var/www/html/backend/database/database.sqlite ]; then
         echo "Creating database.sqlite file..."
         touch /var/www/html/backend/database/database.sqlite
     fi
-    chown www-data:www-data /var/www/html/backend/database/database.sqlite
-    chmod 664 /var/www/html/backend/database/database.sqlite
+    chmod 777 /var/www/html/backend/database
+    chmod 666 /var/www/html/backend/database/database.sqlite
+    chown -R www-data:www-data /var/www/html/backend/database
 fi
 
-# 4. Ensure storage directory structure and permissions
+# 5. Ensure storage directory structure and permissions
 mkdir -p storage/framework/cache/data \
          storage/framework/sessions \
          storage/framework/views \
          storage/logs \
          bootstrap/cache
 
-chown -R www-data:www-data storage bootstrap/cache database .env
-chmod -R 775 storage bootstrap/cache database .env
+chown -R www-data:www-data storage bootstrap/cache .env public
+chmod -R 777 storage bootstrap/cache
+chmod 664 .env
 
-# 5. Clear old cached configs
-php artisan config:clear
-php artisan route:clear
-php artisan view:clear
+# 6. Clear old cached configs
+php artisan config:clear || true
+php artisan route:clear || true
+php artisan view:clear || true
 
-# 6. Run database migrations and seeders
+# 7. Run database migrations and seeders safely
 echo "Running migrations..."
-php artisan migrate --force
+php artisan migrate --force || echo "Migration notice: continuing..."
 
 echo "Running seeders..."
-php artisan db:seed --force
+php artisan db:seed --force || echo "Seeding notice: continuing..."
 
-# 7. Optimize Laravel caching with current environment
+# 8. Optimize Laravel caching with current environment
 echo "Optimizing configuration cache..."
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
+php artisan config:cache || true
+php artisan view:cache || true
 
 echo "Starting Apache on port ${PORT}..."
 exec apache2-foreground

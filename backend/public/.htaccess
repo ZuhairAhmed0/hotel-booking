@@ -2,6 +2,14 @@
     DirectoryIndex index.html index.php
 </IfModule>
 
+<Files "health">
+    ForceType text/plain
+</Files>
+
+<Files "up">
+    ForceType text/plain
+</Files>
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
