@@ -37,8 +37,13 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # Configure Apache DocumentRoot to point to Laravel's public directory
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/backend/public
+ENV APP_KEY=base64:wlWvcaADEomFbuBoQSMuzWUD20tpdFm8+5FksUPAltg=
+ENV APP_ENV=production
+ENV DB_CONNECTION=sqlite
+
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
     && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf \
+    && echo "PassEnv APP_ENV APP_KEY APP_DEBUG DB_CONNECTION DATABASE_URL PORT" >> /etc/apache2/apache2.conf \
     && a2enmod rewrite headers
 
 # Set working directory
@@ -54,17 +59,22 @@ RUN cp -r /var/www/html/frontend/*.html \
           /var/www/html/frontend/assets \
           /var/www/html/backend/public/ 2>/dev/null || true
 
-# Install Composer dependencies
+# Prepare .env before composer install
 WORKDIR /var/www/html/backend
+RUN cp .env.example .env 2>/dev/null || true
+
+# Install Composer dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
 # Set file permissions for Laravel storage and cache
 RUN chown -R www-data:www-data /var/www/html/backend/storage \
     /var/www/html/backend/bootstrap/cache \
     /var/www/html/backend/database \
+    /var/www/html/backend/.env \
     && chmod -R 775 /var/www/html/backend/storage \
     /var/www/html/backend/bootstrap/cache \
-    /var/www/html/backend/database
+    /var/www/html/backend/database \
+    /var/www/html/backend/.env
 
 # Make entrypoint executable
 RUN chmod +x /var/www/html/docker-entrypoint.sh

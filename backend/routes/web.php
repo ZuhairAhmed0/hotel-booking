@@ -4,11 +4,13 @@ use Illuminate\Support\Facades\Route;
 
 // Health check for Render
 Route::get('/health', function () {
-    return response()->json([
-        'status' => 'ok',
-        'timestamp' => now()->toIso8601String(),
-    ]);
-});
+    return response('OK', 200)->header('Content-Type', 'text/plain');
+})->withoutMiddleware([
+    \Illuminate\Cookie\Middleware\EncryptCookies::class,
+    \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+    \Illuminate\Session\Middleware\StartSession::class,
+    \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+]);
 
 // Clean frontend routes
 Route::get('/', function () {
